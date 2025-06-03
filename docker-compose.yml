@@ -1,0 +1,50 @@
+version: '3'
+
+services:
+  aspersor:
+    build: ./Aspersor
+    command: python Aspersor.py
+    container_name: aspersor
+    networks:
+      - red_zeromq
+
+  humo:
+    build: ./Humo
+    command: python Humo.py
+    container_name: humo
+    networks:
+      - red_zeromq
+
+  humedad:
+    build: ./Humedad
+    command: python Humedad.py
+    container_name: humedad
+    networks:
+      - red_zeromq
+
+  temperatura:
+    build: ./Temperatura
+    command: python Temperatura.py
+    container_name: temperatura
+    networks:
+      - red_zeromq
+
+  proxy:
+    build: ./proxy
+    command: python proxy.py
+    container_name: proxy
+    networks:
+      - red_zeromq
+
+  server:
+    build: ./server
+    command: python server.py
+    container_name: server
+    networks:
+      - red_zeromq
+
+networks:
+  red_zeromq:
+    driver: bridge
+
+
